@@ -1,0 +1,52 @@
+name: Robô de ofertas
+on:
+  schedule: [{cron: "7,37 * * * *"}]
+  workflow_dispatch:
+    inputs:
+      ml_codigo: {description: "Só para conectar o Mercado Livre: código TG-... (senão, deixe vazio)", default: ""}
+  push: {branches: [main]}
+permissions: {contents: write, pages: write, id-token: write}
+concurrency: robo
+jobs:
+  rodar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: {name: github-pages, url: "${{ steps.publicar.outputs.page_url }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Desempacotar o zip enviado
+        if: hashFiles('*.zip') != ''
+        run: |
+          ZIP=$(ls *.zip | head -1); rm -rf /tmp/p; unzip -q "$ZIP" -d /tmp/p
+          S=/tmp/p; [ -d /tmp/p/raficou-robo ] && S=/tmp/p/raficou-robo
+          rm -rf "$S/.github"; cp -a "$S/." ./; git rm -q "$ZIP"
+          git config user.name robo-raficou; git config user.email robo-raficou@users.noreply.github.com
+          git add -A; git commit -qm "Instala os arquivos do robô"; git push -q origin "HEAD:$GITHUB_REF_NAME"
+      - id: dados
+        uses: actions/checkout@v4
+        with: {ref: dados, path: estado}
+        continue-on-error: true
+      - id: conferir
+        run: |
+          [ -d robo ] || { echo "::error::Envie o raficou-robo.zip em Add file > Upload files"; exit 1; }
+          bash scripts/conferir.sh "${{ steps.dados.outcome }}"
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -q -r requirements.txt
+      - name: Buscar ofertas
+        env:
+          SEGREDOS: ${{ toJSON(secrets) }}
+          VARIAVEIS: ${{ toJSON(vars) }}
+          ML_CODIGO: ${{ inputs.ml_codigo }}
+        run: |
+          if [ -n "$ML_CODIGO" ]; then python -m robo.ml_login || echo "::error::Mercado Livre não conectou (veja acima)"; fi
+          python -m robo --saida saida --estado estado
+      - name: Guardar histórico
+        if: always() && steps.conferir.outcome == 'success'
+        env: {TOKEN: "${{ github.token }}"}
+        run: bash scripts/guardar.sh
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with: {path: saida}
+      - id: publicar
+        uses: actions/deploy-pages@v4
