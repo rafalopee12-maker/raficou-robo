@@ -1,0 +1,68 @@
+{
+  "_leia": "Configuração do robô RAFICOU! Edite à vontade. Termos com 'en' usam o texto em inglês na busca do AliExpress, que acha mais produtos assim.",
+
+  "lojas_ativas": ["aliexpress", "shopee", "amazon", "mercadolivre"],
+
+  "filtros": {
+    "desconto_minimo": 15,
+    "preco_minimo": 30,
+    "preco_maximo": 15000,
+    "nota_minima": 4.5,
+    "vendas_minimas": 30,
+    "manter_oferta_por_horas": 12,
+    "maximo_no_feed": 200
+  },
+
+  "termos": [
+    { "termo": "headset gamer",            "en": "gaming headset",            "categoria": "audio" },
+    { "termo": "fone gamer sem fio",       "en": "wireless gaming earbuds",   "categoria": "audio" },
+    { "termo": "teclado mecanico",         "en": "mechanical keyboard",       "categoria": "periferico" },
+    { "termo": "mouse gamer",              "en": "gaming mouse",              "categoria": "periferico" },
+    { "termo": "mousepad gamer",           "en": "gaming mouse pad",          "categoria": "periferico" },
+    { "termo": "cadeira gamer",            "en": "gaming chair",              "categoria": "periferico" },
+    { "termo": "controle dualsense",       "en": "dualsense controller",      "categoria": "games" },
+    { "termo": "controle xbox",            "en": "xbox controller",           "categoria": "games" },
+    { "termo": "controle sem fio pc",      "en": "wireless gamepad pc",       "categoria": "games" },
+    { "termo": "jogo ps5",                                                    "categoria": "games", "lojas": ["amazon", "shopee"] },
+    { "termo": "jogo nintendo switch",                                        "categoria": "games", "lojas": ["amazon", "shopee"] },
+    { "termo": "monitor gamer",            "en": "gaming monitor",            "categoria": "pc" },
+    { "termo": "placa de video",           "en": "graphics card rtx",         "categoria": "pc" },
+    { "termo": "ssd nvme",                 "en": "nvme ssd",                  "categoria": "pc" },
+    { "termo": "memoria ram ddr5",         "en": "ddr5 ram",                  "categoria": "pc" },
+    { "termo": "processador ryzen",        "en": "ryzen processor",           "categoria": "pc" },
+    { "termo": "water cooler",             "en": "aio water cooler",          "categoria": "pc" },
+    { "termo": "notebook gamer",                                              "categoria": "notebook", "lojas": ["amazon", "shopee"] }
+  ],
+
+  "palavras_bloqueadas": [
+    "capa", "case para", "pelicula", "película", "adesivo", "skin ", "chaveiro", "camiseta",
+    "caneca", "poster", "pôster", "replica", "réplica", "usado", "sticker", "keychain",
+    "case for", "cover for", "protector", "film for"
+  ],
+
+  "categorias": {
+    "games":      { "emoji": "🎮", "nome": "Games" },
+    "pc":         { "emoji": "🖥️", "nome": "Monitor/PC" },
+    "notebook":   { "emoji": "💻", "nome": "Notebook" },
+    "audio":      { "emoji": "🎧", "nome": "Áudio" },
+    "periferico": { "emoji": "⌨️", "nome": "Periférico" },
+    "geral":      { "emoji": "🔥", "nome": "Geral" }
+  },
+
+  "aliexpress": {
+    "por_termo": 50,
+    "ordenar": "LAST_VOLUME_DESC"
+  },
+  "shopee": {
+    "por_termo": 50,
+    "ordenar": 2
+  },
+  "amazon": {
+    "por_termo": 10,
+    "indice": "All",
+    "marketplace": "www.amazon.com.br"
+  },
+  "mercadolivre": {
+    "mostrar_sempre": false
+  }
+}

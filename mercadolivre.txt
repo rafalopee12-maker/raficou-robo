@@ -1,0 +1,7 @@
+# Produtos do Mercado Livre que o robô acompanha.
+# Uma linha por produto: o link do anúncio e, se quiser, o seu link de afiliado (meli.la) ao lado.
+# O robô mostra o produto no app quando ele entra em promoção ou chega no menor preço dos últimos 30 dias.
+#
+# Exemplos (apague o # da frente e troque pelos seus):
+# https://www.mercadolivre.com.br/controle-dualsense/p/MLB18617473   https://meli.la/abc123
+# https://produto.mercadolivre.com.br/MLB-1234567890-headset-gamer-_JM
