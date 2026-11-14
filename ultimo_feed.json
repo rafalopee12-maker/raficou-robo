@@ -1,0 +1,35 @@
+{
+ "versao": 1,
+ "gerado_em": "2026-11-14T13:27:39+00:00",
+ "total": 0,
+ "lojas": {
+  "aliexpress": {
+   "status": "sem credenciais",
+   "faltando": [
+    "ALIEXPRESS_APP_KEY",
+    "ALIEXPRESS_APP_SECRET",
+    "ALIEXPRESS_TRACKING_ID"
+   ]
+  },
+  "shopee": {
+   "status": "sem credenciais",
+   "faltando": [
+    "SHOPEE_APP_ID",
+    "SHOPEE_SECRET"
+   ]
+  },
+  "amazon": {
+   "status": "sem credenciais",
+   "faltando": [
+    "AMAZON_CREDENTIAL_ID",
+    "AMAZON_CREDENTIAL_SECRET",
+    "AMAZON_PARTNER_TAG"
+   ]
+  },
+  "mercadolivre": {
+   "status": "ok",
+   "ofertas": 0
+  }
+ },
+ "ofertas": []
+}
